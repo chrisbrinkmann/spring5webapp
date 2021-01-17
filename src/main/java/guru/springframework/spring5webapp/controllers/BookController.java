@@ -16,8 +16,16 @@ public class BookController {
 
     @RequestMapping("/books")
     public String getBooks(Model model){
+        /**
+         * We need to load the books records from the repo into the Model.
+         * This will allow Thymeleaf to access the Book object in the template
+         */
         model.addAttribute("books", bookRepository.findAll());
 
-        return model.getAttribute("books").toString();
+        /**
+         * The return value tells the view resolver to look for
+         * a template in resources/templates/books/list
+         */
+        return "books/list";
     }
 }
